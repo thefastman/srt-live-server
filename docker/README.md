@@ -7,10 +7,10 @@ Requirements:
 * Access to Dockerhub, for either the prebuilt image or base layers
 
 To build:
-`docker build -t friendly_image_name_goes_here .`
+`docker build -t srt-srv .`
 
 To run from dockerhub:
-`docker run -d -p 1935:1935/udp ravenium/srt-live-server`
+`docker run -d -p 4242:4242/udp srt-srv`
 
 To run via docker-compose:
 `mkdir -p logs; chmod a+w logs; docker-compose up`
@@ -23,11 +23,11 @@ Notes on the sls.conf (the config for srt-live-server)
 
 Example Sending of SRT in OBS:
 * In the setup menu under "stream", select "Custom..."  leave the Key field blank.
-* Put the following url to send to your docker container: `srt://your.server.ip:1935?streamid=input/live/yourstreamname`
+* Put the following url to send to your docker container: `srt://your.server.ip:4242?streamid=input/live/yourstreamname`
 
 Example of Receiving of SRT in OBS:
 * Add a Media Source
-* Put the following url to receive: `srt://your.server.ip:1935?streamid=output/live/yourstreamname`
+* Put the following url to receive: `srt://your.server.ip:4242?streamid=output/live/yourstreamname`
 
 Errata, thoughts, future:
 * There are some things in the config that don't seem to work right yet, e.g. the on_event and status_url directives.  If anyone gets these working, please let me know!
